@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrderDeliveryReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="30be1118-7bca-4a97-9e95-f9a99ce1db05">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="PizzariaAugustasAdapter.jrdax"/>
+	<parameter name="SelectAllDelivery" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT tipopedido,
+	descricaopedido
+FROM orders  
+WHERE tipopedido = $P{SelectAllDelivery}]]>
+	</queryString>
+	<field name="tipopedido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="tipopedido"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipopedido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<field name="descricaopedido" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descricaopedido"/>
+		<property name="com.jaspersoft.studio.field.label" value="descricaopedido"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="orders"/>
+	</field>
+	<group name="DeliveryGroup">
+		<groupExpression><![CDATA[$F{tipopedido}]]></groupExpression>
+		<groupHeader>
+			<band height="49">
+				<rectangle radius="4">
+					<reportElement x="10" y="5" width="540" height="32" backcolor="#D4D4D4" uuid="b46138a7-9468-482a-ae79-4d65c0b3322c"/>
+					<graphicElement>
+						<pen lineColor="rgba(0, 0, 0, 0.0)"/>
+					</graphicElement>
+				</rectangle>
+				<staticText>
+					<reportElement x="30" y="12" width="121" height="18" uuid="d93f44cc-ba21-4c12-86e1-67596dfb5f0c"/>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Descrição do Pedido]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="420" y="13" width="100" height="18" uuid="dd229765-7c02-422a-8e60-691061d5a5b6"/>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[Tipo de pedido]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="50"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="99" splitType="Stretch">
+			<rectangle radius="5">
+				<reportElement x="10" y="24" width="535" height="50" backcolor="#D4D4D4" uuid="cfd3b3f2-4c62-4c78-a291-90650c46245c"/>
+				<graphicElement>
+					<pen lineColor="rgba(0, 0, 0, 0.0)"/>
+				</graphicElement>
+			</rectangle>
+			<staticText>
+				<reportElement x="151" y="34" width="168" height="30" uuid="9836cb07-9e93-4e72-a181-d4e125ee4927"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Pedidos do tipo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="320" y="34" width="220" height="30" uuid="6bf2acbf-a5e0-45fa-94bb-6377b83f9f31"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SelectAllDelivery}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="74">
+			<textField>
+				<reportElement x="20" y="10" width="299" height="30" uuid="61560d9c-05ad-459f-ba86-6edf193a2748"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{descricaopedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="10" width="100" height="30" uuid="492e4c54-eb98-4101-8930-a3dff5915d76"/>
+				<textFieldExpression><![CDATA[$F{tipopedido}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement key="line" mode="Opaque" x="17" y="50" width="520" height="1" forecolor="#000000" backcolor="#FFFFFF" uuid="421d2f5a-ab9d-4f0d-a9cd-041a2f6af867"/>
+				<graphicElement fill="Solid">
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="360" y="20" width="100" height="30" uuid="a1db0ff9-5ac8-4321-909f-4e08c2362eea"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="460" y="20" width="100" height="30" uuid="8afe255b-9e42-4edd-8bf1-74ba6de0da59"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
